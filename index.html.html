@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Owais Masood — LinkedIn Strategy</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #1e1828; font-family: 'DM Sans', sans-serif; color: #f5f0fa; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    const ACCENT  = "#fe5656";
+    const ACCENT2 = "#be3758";
+    const ACCENT3 = "#fedb99";
+    const BG      = "#1e1828";
+    const SURFACE  = "#251f32";
+    const SURFACE2 = "#2e2740";
+    const BORDER   = "#3d3455";
+    const TEXT     = "#f5f0fa";
+    const MUTED    = "#9c889b";
+
+    const pillars = [
+      { icon:"⚡", name:"Hot Takes",            color:"#fedb99", freq:"2× / month",
+        desc:"Provocative, grounded opinions that invite debate. Your decade of cross-industry experience gives you standing to challenge orthodoxies.",
+        examples:["'Most companies don't have a data science problem — they have an infrastructure problem.'","'Data governance is the foundation of AI trustworthiness, not a compliance checkbox.'"] },
+      { icon:"📖", name:"War Stories",           color:"#fe5656", freq:"3× / month",
+        desc:"Anonymised, real experiences from your career. Specificity builds credibility. The MAU bug, the champion/challenger save, the PII redesign.",
+        examples:["The 15% MAU overreporting discovery and stakeholder rebuild","Telling a stakeholder their 'best' model shouldn't ship"] },
+      { icon:"🎯", name:"Questions to the Room", color:"#be3758", freq:"3× / month",
+        desc:"Polls and open questions that hand the mic to your network. The goal is replies, not likes. Be genuinely curious.",
+        examples:["'What's the hardest industry you've done analytics in?'","'Databricks vs Snowflake for ML workloads — where do you lean?'"] },
+      { icon:"🎓", name:"Practitioner Lessons",  color:"#9c889b", freq:"3× / month",
+        desc:"Specific, earned insights from real projects — not generic advice. Feature stores, medallion architecture, model validation.",
+        examples:["'I've shipped ML across 4 industries. The model was never the bottleneck.'","What the medallion architecture is actually about"] },
+      { icon:"🤝", name:"Celebrate & Amplify",   color:"#be3758", freq:"2× / month",
+        desc:"Publicly recognise connections, former colleagues, and community members. The highest-ROI networking activity on LinkedIn.",
+        examples:["Amplifying Pakistan data community voices","Celebrating a former colleague's milestone"] },
+      { icon:"💭", name:"Reflections",            color:"#fedb99", freq:"1× / month",
+        desc:"Periodic career retrospectives. '10 years in — here's what I got wrong in year one.' These perform well and attract senior peers.",
+        examples:["Early career mistakes in data science","What adapting across 4 industries taught me about the craft"] },
+    ];
+
+    const engagementTactics = [
+      { category:"Daily (15–20 min)", color:"#fe5656", items:[
+        "Comment meaningfully on 3–5 posts — add a data angle, a counter-example, or a question. Never just 'Great post!'",
+        "Respond to every comment on your own posts within 24 hours — this is the #1 engagement driver",
+        "React to posts from target accounts: data science leads, gaming analytics, Pakistan tech community",
+      ]},
+      { category:"Weekly", color:"#be3758", items:[
+        "Send 3–5 personalised connection requests — reference a specific post or shared context",
+        "DM 1–2 people who engaged thoughtfully on your posts to continue the conversation",
+        "Identify 2–3 trending threads in your space to drop a substantive comment on",
+      ]},
+      { category:"Target Accounts to Engage", color:"#9c889b", items:[
+        "Data science leaders at gaming studios (Riot, EA, Ubisoft analytics teams)",
+        "Analytics practitioners in Pakistan and MENA tech community",
+        "Databricks, dbt, and modern data stack thought leaders",
+        "Product analytics voices (Amplitude team, Mixpanel community)",
+        "ML engineering and MLOps practitioners (cross-industry credibility)",
+      ]},
+      { category:"Profile Optimisation (Do First)", color:"#fedb99", items:[
+        "Headline: 'Data Science & Analytics Leader | ML in Production | Gaming · Telecom · Retail · FinServ' — remove the years count",
+        "About section: Open with the MAU bug story or the NBO model — a hook, not a CV summary",
+        "Featured section: Pin your 2 best posts once they gain traction",
+        "Creator mode: Turn on — unlocks follower count and newsletter feature",
+      ]},
+    ];
+
+    const month1 = [
+      { week:"Week 1", dates:"May 4 – 9", posts:[
+        { day:"Mon May 5",  type:"War Story",  typeColor:"#fe5656", title:"The MAU Bug",
+          hook:"I found a bug silently inflating our MAU numbers by 15% — for over a year. Three days to find it. Four hours to fix. The real work? Rebuilding trust in the data across an entire leadership team.",
+          cta:"Have you ever discovered a data quality issue that changed how leadership saw the data function?", pillar:"War Stories" },
+        { day:"Wed May 7",  type:"Poll",       typeColor:"#be3758", title:"First Priorities Poll",
+          hook:"For data leaders: when you inherit a messy data stack, what do you tackle first?\n\nA) Data quality\nB) Documentation\nC) Stakeholder trust\nD) Architecture",
+          cta:"Drop your reasoning below 👇", pillar:"Questions to the Room" },
+        { day:"Fri May 9",  type:"Hot Take",   typeColor:"#fedb99", title:"The Dangerous Phrase",
+          hook:"The most dangerous phrase in analytics: 'we've always measured it this way.' It's not tradition — it's a reason to avoid accountability.",
+          cta:"What's your most-heard dangerous phrase in data work? I'll collect the best ones.", pillar:"Hot Takes" },
+      ]},
+      { week:"Week 2", dates:"May 11 – 16", posts:[
+        { day:"Mon May 12", type:"Lesson",     typeColor:"#9c889b", title:"The Real Bottleneck",
+          hook:"I've built ML models for a telco, a furniture retailer, a food company, and a gaming studio. The models were different every time. The mistake was almost always the same: shipping before the feature store was actually ready.",
+          cta:"What's your version of this? What keeps showing up across projects regardless of industry?", pillar:"Practitioner Lessons" },
+        { day:"Wed May 14", type:"Question",   typeColor:"#be3758", title:"Hardest Industry?",
+          hook:"Gaming analytics vs. telecom vs. retail — the data volumes, velocity, and user behaviour are completely different beasts. Gaming users can spike, churn, and return within 48 hours. Telecom churn is glacial by comparison.",
+          cta:"Data people: what's the hardest industry you've done analytics in, and what made it hard?", pillar:"Questions to the Room" },
+        { day:"Fri May 16", type:"Amplify",    typeColor:"#fe5656", title:"Celebrate a Connection",
+          hook:"Came across [Name]'s post on [topic] and it nailed something I've been thinking about for a while: [your specific take]. This is the kind of clear thinking that makes data work easier to communicate upward.",
+          cta:"Go follow [Name] if you care about [topic area].", pillar:"Celebrate & Amplify" },
+      ]},
+      { week:"Week 3", dates:"May 18 – 23", posts:[
+        { day:"Mon May 19", type:"Hot Take",   typeColor:"#fedb99", title:"Infrastructure Problem",
+          hook:"Most companies don't have a data science problem. They have a data infrastructure problem disguised as a data science problem. The model is never the bottleneck — the pipeline feeding it is.",
+          cta:"Agree or disagree? I'm curious what the counterarguments are.", pillar:"Hot Takes" },
+        { day:"Wed May 21", type:"War Story",  typeColor:"#fe5656", title:"When I Said Don't Ship",
+          hook:"I had to tell a senior stakeholder that our 'best' ML model shouldn't go to production. Champion/challenger testing caught it — the challenger underperformed on a specific customer segment that mattered commercially.",
+          cta:"Has rigorous validation ever saved you from a bad ship? What was the mechanism?", pillar:"War Stories" },
+        { day:"Fri May 23", type:"Poll",       typeColor:"#be3758", title:"AI Self-Service Poll",
+          hook:"AI self-service analytics tools are everywhere now. My honest take: they raise the floor and might lower the ceiling. But I want to hear from you.",
+          cta:"Are these tools making data teams more or less valuable? Vote + share your reasoning 👇", pillar:"Questions to the Room" },
+      ]},
+      { week:"Week 4", dates:"May 25 – 30", posts:[
+        { day:"Mon May 26", type:"Reflection", typeColor:"#fedb99", title:"Year One Mistakes",
+          hook:"10 years in data science. Here's what I got completely wrong in year one:\n\n→ Thought better models = better outcomes\n→ Ignored the political reality of data ownership\n→ Underestimated how much time goes into data prep\n→ Conflated complexity with rigour",
+          cta:"What would you add? What did you get wrong early on?", pillar:"Reflections" },
+        { day:"Wed May 28", type:"Question",   typeColor:"#be3758", title:"Stakeholder Wish List",
+          hook:"If you could get every stakeholder to genuinely understand one thing about working with data, what would it be?",
+          cta:"I'll start in the comments. And I'm collecting the best answers here.", pillar:"Questions to the Room" },
+        { day:"Fri May 30", type:"Poll",       typeColor:"#be3758", title:"Hiring Priorities Poll",
+          hook:"I've hired for data roles at different stages. My view has shifted a lot on what actually matters. Technical skills can be taught — some things can't.",
+          cta:"Hiring data science talent: what matters most? A) Technical depth B) Communication C) Domain knowledge D) Curiosity/learning speed", pillar:"Questions to the Room" },
+      ]},
+    ];
+
+    const month2 = [
+      { week:"Week 5", dates:"Jun 2 – 6", posts:[
+        { day:"Mon Jun 2",  type:"Hot Take",   typeColor:"#fedb99", title:"Governance = Trust",
+          hook:"Data governance isn't a compliance checkbox. It's the foundation that determines whether AI is actually trustworthy at an organisational level. Teams treating it as box-ticking will pay for it — eventually, publicly.",
+          cta:"What's your governance hot take? Where does it get underinvested?", pillar:"Hot Takes" },
+        { day:"Wed Jun 4",  type:"Lesson",     typeColor:"#9c889b", title:"Medallion Architecture",
+          hook:"The medallion architecture (Bronze → Silver → Gold) isn't just a Databricks pattern. It's a philosophy: decide early where you catch complexity, or complexity will catch you at the worst possible moment.",
+          cta:"How do you think about layering data transformation? What's your mental model?", pillar:"Practitioner Lessons" },
+        { day:"Fri Jun 6",  type:"Question",   typeColor:"#be3758", title:"Underrated Skills",
+          hook:"Open question for the room: what's the most underrated skill in data science that almost nobody talks about in job descriptions or interviews?",
+          cta:"My answer is in the comments. Drop yours.", pillar:"Questions to the Room" },
+      ]},
+      { week:"Week 6", dates:"Jun 9 – 13", posts:[
+        { day:"Mon Jun 9",  type:"War Story",  typeColor:"#fe5656", title:"The NBO Model",
+          hook:"We built a Next Best Offer propensity model scoring millions of telecom customers monthly. The model was solid. The hardest part was a business rule — making sure we didn't cannibalise our own revenue by pushing the wrong offer to the wrong customer at the wrong time.",
+          cta:"Have you ever had to layer business logic on top of a model to protect commercial outcomes? How did you handle the tension?", pillar:"War Stories" },
+        { day:"Wed Jun 11", type:"Poll",       typeColor:"#be3758", title:"K-Means Still Relevant?",
+          hook:"K-Means clustering gets unfairly dismissed by the deep learning crowd. For behavioural segmentation in production? With interpretable clusters, business-friendly profiling, and fast inference — it's often the right call.",
+          cta:"K-Means in 2026: still relevant for behavioural segmentation or outclassed? Vote + make your case 👇", pillar:"Questions to the Room" },
+        { day:"Fri Jun 13", type:"Amplify",    typeColor:"#fe5656", title:"Analyst Readiness",
+          hook:"Analytics leaders: how do you know when a junior analyst is ready to own a product independently? Not just technically — the communication, prioritisation, the ability to push back on bad asks.",
+          cta:"I'm genuinely curious about the markers people use. Share yours.", pillar:"Celebrate & Amplify" },
+      ]},
+      { week:"Week 7", dates:"Jun 16 – 20", posts:[
+        { day:"Mon Jun 16", type:"Lesson",     typeColor:"#9c889b", title:"Writing for AI",
+          hook:"Writing a 1,200-line skill specification for an AI analytics assistant taught me more about my own data model than 6 months of building it. When you have to be precise enough for an LLM, you find every assumption you never questioned.",
+          cta:"Has documenting your work ever revealed something unexpected about the system itself?", pillar:"Practitioner Lessons" },
+        { day:"Wed Jun 18", type:"Question",   typeColor:"#be3758", title:"Databricks vs Snowflake",
+          hook:"Databricks vs Snowflake for ML workloads — I have a view on this based on real deployments, but I want to hear from people in the trenches.",
+          cta:"Where do you lean and what's the deciding factor? Drop your context too — industry, team size, use case.", pillar:"Questions to the Room" },
+        { day:"Fri Jun 20", type:"Reflection", typeColor:"#fedb99", title:"Domain Shifts",
+          hook:"Telecom → Retail → FMCG → Gaming. Four industries, four completely different conceptions of what a 'user' is, what churn means, what success looks like. The craft travels. The intuition has to be rebuilt every time.",
+          cta:"What's the most different domain shift you've made as a data professional? What had to be unlearned?", pillar:"Reflections" },
+      ]},
+      { week:"Week 8", dates:"Jun 23 – 27", posts:[
+        { day:"Mon Jun 23", type:"Lesson",     typeColor:"#9c889b", title:"Apriori Still Works",
+          hook:"Association rule mining still has a place. Applied Apriori to retail transaction data for a global client — surfaced cross-sell opportunities their merchandising team hadn't spotted in years of gut-feel category planning. Sometimes the classic methods just work.",
+          cta:"What 'old' technique have you revived recently to good effect?", pillar:"Practitioner Lessons" },
+        { day:"Wed Jun 25", type:"Poll",       typeColor:"#be3758", title:"Hidden ML Cost Poll",
+          hook:"Everyone talks about the cost of building a model. Nobody talks enough about the cost of keeping it alive in production.",
+          cta:"Biggest hidden cost of a production ML model? A) Retraining cycles B) Monitoring/alerting C) Stakeholder buy-in maintenance D) Feature drift", pillar:"Questions to the Room" },
+        { day:"Fri Jun 27", type:"War Story",  typeColor:"#fe5656", title:"Price Elasticity in Production",
+          hook:"Most price elasticity analyses are one-off reports. We built one that was actually deployed to production — so the pricing team could run sensitivity queries on demand, not wait for a data scientist to re-run a notebook. That's the difference between analytics as a service and analytics as a product.",
+          cta:"What's a project that shifted your thinking from 'analysis' to 'product'?", pillar:"War Stories" },
+      ]},
+    ];
+
+    const typeColors = {
+      "War Story":"#fe5656","Poll":"#be3758","Hot Take":"#fedb99",
+      "Lesson":"#9c889b","Question":"#be3758","Amplify":"#fe5656","Reflection":"#fedb99",
+    };
+
+    function Badge({ label, color }) {
+      return (
+        <span style={{
+          background: color + "18", color, border: `1px solid ${color}30`,
+          padding: "2px 10px", borderRadius: 4, fontSize: 11,
+          fontFamily: "'DM Mono', monospace", fontWeight: 600,
+          letterSpacing: "0.04em", textTransform: "uppercase",
+        }}>{label}</span>
+      );
+    }
+
+    function PostCard({ post }) {
+      const [open, setOpen] = useState(false);
+      const color = typeColors[post.type] || ACCENT;
+      return (
+        <div onClick={() => setOpen(!open)} style={{
+          background: open ? SURFACE2 : SURFACE,
+          border: `1px solid ${open ? color + "40" : BORDER}`,
+          borderLeft: `3px solid ${color}`, borderRadius: 8,
+          padding: "14px 18px", cursor: "pointer",
+          transition: "all 0.2s", marginBottom: 10,
+        }}>
+          <div style={{ display:"flex", alignItems:"center", gap:12, justifyContent:"space-between" }}>
+            <div style={{ display:"flex", alignItems:"center", gap:12, flexWrap:"wrap" }}>
+              <span style={{ color:MUTED, fontFamily:"'DM Mono', monospace", fontSize:12, minWidth:80 }}>{post.day}</span>
+              <Badge label={post.type} color={color} />
+              <span style={{ color:TEXT, fontWeight:600, fontSize:14 }}>{post.title}</span>
+            </div>
+            <span style={{ color:MUTED, fontSize:16, flexShrink:0 }}>{open ? "−" : "+"}</span>
+          </div>
+          {open && (
+            <div style={{ marginTop:14, paddingTop:14, borderTop:`1px solid ${BORDER}` }}>
+              <div style={{ marginBottom:10 }}>
+                <span style={{ color:MUTED, fontSize:11, fontFamily:"'DM Mono', monospace", textTransform:"uppercase", letterSpacing:"0.05em" }}>Opening Hook</span>
+                <p style={{ color:TEXT, fontSize:14, lineHeight:1.65, marginTop:6, whiteSpace:"pre-line" }}>{post.hook}</p>
+              </div>
+              <div style={{ background:color+"0D", border:`1px solid ${color}25`, borderRadius:6, padding:"10px 14px" }}>
+                <span style={{ color, fontSize:11, fontFamily:"'DM Mono', monospace", textTransform:"uppercase", letterSpacing:"0.05em" }}>Engagement CTA</span>
+                <p style={{ color:TEXT, fontSize:13, lineHeight:1.6, marginTop:4 }}>{post.cta}</p>
+              </div>
+              <div style={{ marginTop:10 }}>
+                <Badge label={`Pillar: ${post.pillar}`} color={color} />
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    function WeekBlock({ week }) {
+      return (
+        <div style={{ marginBottom:28 }}>
+          <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:14 }}>
+            <span style={{ color:ACCENT, fontFamily:"'DM Mono', monospace", fontSize:12, fontWeight:700 }}>{week.week}</span>
+            <span style={{ color:MUTED, fontFamily:"'DM Mono', monospace", fontSize:11 }}>{week.dates}</span>
+            <div style={{ flex:1, height:1, background:BORDER }} />
+          </div>
+          {week.posts.map((post, i) => <PostCard key={i} post={post} />)}
+        </div>
+      );
+    }
+
+    function StrategyTab() {
+      return (
+        <div>
+          <div style={{ background:SURFACE, border:`1px solid ${BORDER}`, borderRadius:10, padding:24, marginBottom:20 }}>
+            <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:16 }}>
+              <span style={{ color:ACCENT, fontSize:18 }}>🎯</span>
+              <h3 style={{ color:TEXT, margin:0, fontSize:16, fontWeight:700 }}>Positioning Statement</h3>
+            </div>
+            <p style={{ color:TEXT, fontSize:14, lineHeight:1.7, margin:0 }}>
+              Owais shows up on LinkedIn as a <span style={{ color:ACCENT, fontWeight:600 }}>cross-industry data science practitioner</span> — not a theorist, not a vendor, not a content marketer. Someone who has shipped ML to production, caught the bugs that mattered, and built the infrastructure that made models work. The voice is direct, specific, and grounded in real experience.
+            </p>
+            <div style={{ display:"flex", gap:10, marginTop:16, flexWrap:"wrap" }}>
+              {["Telecom · Retail · Gaming · FinServ","ML in Production","Data Infrastructure","Analytics Leadership","Pakistan Tech"].map(t => (
+                <Badge key={t} label={t} color={ACCENT} />
+              ))}
+            </div>
+          </div>
+
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))", gap:14, marginBottom:20 }}>
+            {[
+              { icon:"🤝", label:"Primary Goal",   val:"Build an engaged network of data leaders, analytics practitioners, and hiring managers", color:ACCENT },
+              { icon:"📣", label:"Secondary Goal",  val:"Establish thought leadership as a cross-industry ML practitioner with production depth", color:ACCENT2 },
+              { icon:"📈", label:"60-Day Target",   val:"500+ new relevant followers, 50+ meaningful conversations started in comments", color:"#9c889b" },
+            ].map(g => (
+              <div key={g.label} style={{ background:SURFACE, border:`1px solid ${BORDER}`, borderLeft:`3px solid ${g.color}`, borderRadius:8, padding:16 }}>
+                <div style={{ color:g.color, fontSize:20, marginBottom:8 }}>{g.icon}</div>
+                <div style={{ color:MUTED, fontSize:11, fontFamily:"'DM Mono', monospace", textTransform:"uppercase", marginBottom:6 }}>{g.label}</div>
+                <div style={{ color:TEXT, fontSize:13, lineHeight:1.55 }}>{g.val}</div>
+              </div>
+            ))}
+          </div>
+
+          <h3 style={{ color:TEXT, fontSize:15, fontWeight:700, marginBottom:14 }}>Content Pillars</h3>
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:12, marginBottom:24 }}>
+            {pillars.map(p => (
+              <div key={p.name} style={{ background:SURFACE, border:`1px solid ${BORDER}`, borderRadius:8, padding:16 }}>
+                <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:10, flexWrap:"wrap" }}>
+                  <span style={{ fontSize:18 }}>{p.icon}</span>
+                  <span style={{ color:p.color, fontWeight:700, fontSize:14 }}>{p.name}</span>
+                  <Badge label={p.freq} color={p.color} />
+                </div>
+                <p style={{ color:MUTED, fontSize:13, lineHeight:1.6, marginBottom:10 }}>{p.desc}</p>
+                <div style={{ borderTop:`1px solid ${BORDER}`, paddingTop:8 }}>
+                  {p.examples.map((ex, i) => (
+                    <div key={i} style={{ color:TEXT, fontSize:12, lineHeight:1.5, marginBottom:4, paddingLeft:10, borderLeft:`2px solid ${p.color}40` }}>{ex}</div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ background:SURFACE, border:`1px solid ${BORDER}`, borderRadius:10, padding:20 }}>
+            <h3 style={{ color:TEXT, fontSize:15, fontWeight:700, marginBottom:14 }}>Posting Cadence & Rules</h3>
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))", gap:14 }}>
+              {[
+                { day:"Monday",    type:"Story / Reflection / Hot Take", note:"High-value anchor post to start the week",    color:"#fe5656" },
+                { day:"Wednesday", type:"Poll / Question",               note:"Drives comments through the rest of the week", color:"#be3758" },
+                { day:"Friday",    type:"Lesson / Amplify / Engage",     note:"Ends the week with generosity or craft",       color:"#9c889b" },
+              ].map(c => (
+                <div key={c.day} style={{ background:SURFACE2, borderRadius:8, padding:14, borderTop:`2px solid ${c.color}` }}>
+                  <div style={{ color:c.color, fontFamily:"'DM Mono', monospace", fontWeight:700, fontSize:13, marginBottom:6 }}>{c.day}</div>
+                  <div style={{ color:TEXT, fontSize:13, fontWeight:600, marginBottom:4 }}>{c.type}</div>
+                  <div style={{ color:MUTED, fontSize:12 }}>{c.note}</div>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop:16, paddingTop:16, borderTop:`1px solid ${BORDER}` }}>
+              <div style={{ color:MUTED, fontSize:12, fontFamily:"'DM Mono', monospace", marginBottom:8 }}>GOLDEN RULES</div>
+              <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))", gap:8 }}>
+                {[
+                  "Never open with 'I'. Start with the problem, story, or claim.",
+                  "End every post with a specific question — not 'thoughts?'",
+                  "Reply to every comment. Comments feed the algorithm.",
+                  "Never post and ghost. Block 20 min post-publish for engagement.",
+                  "Keep posts under 1,000 characters. Respect the scroll.",
+                  "No hashtag spam. 2–3 targeted hashtags maximum.",
+                ].map((r, i) => (
+                  <div key={i} style={{ display:"flex", gap:8, alignItems:"flex-start" }}>
+                    <span style={{ color:ACCENT, fontSize:12, marginTop:2, flexShrink:0 }}>→</span>
+                    <span style={{ color:TEXT, fontSize:12, lineHeight:1.5 }}>{r}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function EngagementTab() {
+      return (
+        <div>
+          <div style={{ background:SURFACE, border:`1px solid ${ACCENT}30`, borderRadius:10, padding:20, marginBottom:20 }}>
+            <div style={{ color:ACCENT, fontSize:13, fontFamily:"'DM Mono', monospace", marginBottom:8, textTransform:"uppercase", letterSpacing:"0.05em" }}>Key Principle</div>
+            <p style={{ color:TEXT, fontSize:15, lineHeight:1.65, margin:0 }}>
+              For a networking-first strategy, <span style={{ color:ACCENT, fontWeight:600 }}>your comments are more valuable than your posts.</span> A thoughtful comment on a thread with 200 reactions reaches more relevant people than a standalone post. Prioritise showing up in other people's conversations.
+            </p>
+          </div>
+
+          {engagementTactics.map(section => (
+            <div key={section.category} style={{ background:SURFACE, border:`1px solid ${BORDER}`, borderLeft:`3px solid ${section.color}`, borderRadius:8, padding:20, marginBottom:14 }}>
+              <div style={{ color:section.color, fontWeight:700, fontSize:14, marginBottom:14, fontFamily:"'DM Mono', monospace" }}>{section.category}</div>
+              {section.items.map((item, i) => (
+                <div key={i} style={{ display:"flex", gap:10, marginBottom:10, alignItems:"flex-start" }}>
+                  <span style={{ color:section.color, fontSize:12, marginTop:3, flexShrink:0 }}>▸</span>
+                  <span style={{ color:TEXT, fontSize:14, lineHeight:1.6 }}>{item}</span>
+                </div>
+              ))}
+            </div>
+          ))}
+
+          <div style={{ background:SURFACE, border:`1px solid ${BORDER}`, borderRadius:10, padding:20 }}>
+            <h3 style={{ color:TEXT, fontSize:15, fontWeight:700, marginBottom:14 }}>Comment Quality Framework</h3>
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))", gap:12 }}>
+              {[
+                { label:"Add a data point",       example:"'This tracks — in my experience at Teradata, the same pattern showed up in retail...'", color:ACCENT },
+                { label:"Offer a counter-example", example:"'Interesting — we actually saw the opposite in gaming, where feature drift was more damaging than retraining cost...'", color:"#be3758" },
+                { label:"Ask a follow-up",         example:"'Did you find that the architecture changed once you moved to streaming ingestion, or did the medallion layers hold?'", color:"#9c889b" },
+                { label:"Share the nuance",        example:"'This depends heavily on org maturity — at early-stage startups, stakeholder trust often IS the data quality problem...'", color:"#fedb99" },
+              ].map(c => (
+                <div key={c.label} style={{ background:SURFACE2, borderRadius:8, padding:14 }}>
+                  <div style={{ color:c.color, fontSize:12, fontWeight:700, marginBottom:8, fontFamily:"'DM Mono', monospace" }}>→ {c.label}</div>
+                  <div style={{ color:MUTED, fontSize:12, lineHeight:1.6, fontStyle:"italic" }}>{c.example}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function App() {
+      const [tab, setTab] = useState("strategy");
+      const tabs = [
+        { key:"strategy",   label:"Strategy" },
+        { key:"month1",     label:"May 2026" },
+        { key:"month2",     label:"June 2026" },
+        { key:"engagement", label:"Engagement Playbook" },
+      ];
+
+      return (
+        <div style={{ background:BG, minHeight:"100vh", fontFamily:"'DM Sans', sans-serif", color:TEXT }}>
+          <div style={{ borderBottom:`1px solid ${BORDER}`, padding:"24px 32px 0" }}>
+            <div style={{ maxWidth:900, margin:"0 auto" }}>
+              <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:4 }}>
+                <div style={{ width:8, height:8, background:ACCENT, borderRadius:"50%", boxShadow:`0 0 8px ${ACCENT}` }} />
+                <span style={{ color:MUTED, fontFamily:"'DM Mono', monospace", fontSize:11, textTransform:"uppercase", letterSpacing:"0.08em" }}>LinkedIn Strategy · 2-Month Content Calendar</span>
+              </div>
+              <h1 style={{ margin:"0 0 4px", fontSize:26, fontWeight:700, color:TEXT }}>Owais Masood</h1>
+              <p style={{ color:MUTED, fontSize:13, margin:"0 0 20px" }}>Data Science & Analytics Leader · Networking-First LinkedIn Strategy</p>
+              <div style={{ display:"flex", gap:0, overflowX:"auto" }}>
+                {tabs.map(t => (
+                  <button key={t.key} onClick={() => setTab(t.key)} style={{
+                    background:"none", border:"none",
+                    borderBottom: tab === t.key ? `2px solid ${ACCENT}` : "2px solid transparent",
+                    color: tab === t.key ? ACCENT : MUTED,
+                    padding:"10px 20px", cursor:"pointer", fontSize:13,
+                    fontFamily:"'DM Sans', sans-serif",
+                    fontWeight: tab === t.key ? 600 : 400,
+                    transition:"all 0.15s", whiteSpace:"nowrap",
+                  }}>{t.label}</button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div style={{ maxWidth:900, margin:"0 auto", padding:"28px 32px" }}>
+            {tab === "strategy"   && <StrategyTab />}
+            {tab === "month1"     && (
+              <div>
+                <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:24, flexWrap:"wrap" }}>
+                  <h2 style={{ margin:0, fontSize:20, fontWeight:700 }}>May 2026</h2>
+                  <Badge label="12 posts · 4 weeks" color={ACCENT} />
+                  <Badge label="Click any post to expand" color={MUTED} />
+                </div>
+                {month1.map((w, i) => <WeekBlock key={i} week={w} />)}
+              </div>
+            )}
+            {tab === "month2"     && (
+              <div>
+                <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:24, flexWrap:"wrap" }}>
+                  <h2 style={{ margin:0, fontSize:20, fontWeight:700 }}>June 2026</h2>
+                  <Badge label="12 posts · 4 weeks" color={ACCENT2} />
+                  <Badge label="Click any post to expand" color={MUTED} />
+                </div>
+                {month2.map((w, i) => <WeekBlock key={i} week={w} />)}
+              </div>
+            )}
+            {tab === "engagement" && <EngagementTab />}
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
