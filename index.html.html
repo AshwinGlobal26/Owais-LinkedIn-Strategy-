@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Owais Masood — LinkedIn Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#1e1828;font-family:'DM Sans',sans-serif;color:#f5f0fa;min-height:100vh}
+.header{border-bottom:1px solid #3d3455;padding:24px 32px 0}
+.header-inner{max-width:900px;margin:0 auto}
+.label-row{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.dot{width:8px;height:8px;background:#fe5656;border-radius:50%;box-shadow:0 0 8px #fe5656;flex-shrink:0}
+.label-text{color:#9c889b;font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+h1{font-size:26px;font-weight:700;margin:4px 0;color:#f5f0fa}
+.subtitle{color:#9c889b;font-size:13px;margin-bottom:20px}
+.tabs{display:flex;overflow-x:auto;gap:0}
+.tab-btn{background:none;border:none;border-bottom:2px solid transparent;color:#9c889b;padding:10px 20px;cursor:pointer;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:400;transition:all .15s;white-space:nowrap}
+.tab-btn.active{border-bottom-color:#fe5656;color:#fe5656;font-weight:600}
+.content{max-width:900px;margin:0 auto;padding:28px 32px}
+.panel{display:none}.panel.active{display:block}
+.badge{display:inline-block;padding:2px 10px;border-radius:4px;font-size:11px;font-family:'DM Mono',monospace;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.card{background:#251f32;border:1px solid #3d3455;border-radius:10px;padding:24px;margin-bottom:20px}
+.card-row{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:20px}
+.goal-card{background:#251f32;border:1px solid #3d3455;border-radius:8px;padding:16px}
+.goal-icon{font-size:20px;margin-bottom:8px}
+.goal-label{color:#9c889b;font-size:11px;font-family:'DM Mono',monospace;text-transform:uppercase;margin-bottom:6px}
+.pillars-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:24px}
+.pillar{background:#251f32;border:1px solid #3d3455;border-radius:8px;padding:16px}
+.pillar-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.pillar-desc{font-size:13px;line-height:1.6;margin-bottom:10px;color:#9c889b}
+.pillar-examples{border-top:1px solid #3d3455;padding-top:8px}
+.section-title{font-size:15px;font-weight:700;margin-bottom:14px;color:#f5f0fa}
+.cadence-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.cadence-card{background:#2e2740;border-radius:8px;padding:14px}
+.rules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid #3d3455}
+.rule-row{display:flex;gap:8px;align-items:flex-start}
+.week-block{margin-bottom:28px}
+.week-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.week-line{flex:1;height:1px;background:#3d3455}
+.post-card{border-radius:8px;padding:14px 18px;cursor:pointer;transition:all .2s;margin-bottom:10px;border-width:1px;border-style:solid;border-left-width:3px;border-left-style:solid}
+.post-header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.post-header-left{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.post-day{color:#9c889b;font-family:'DM Mono',monospace;font-size:12px;min-width:80px}
+.post-title{font-weight:600;font-size:14px;color:#f5f0fa}
+.post-toggle{color:#9c889b;font-size:16px;flex-shrink:0}
+.post-body{margin-top:14px;padding-top:14px;border-top:1px solid #3d3455;display:none}
+.post-hook-label{color:#9c889b;font-size:11px;font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
+.post-hook{font-size:14px;line-height:1.65;margin-top:6px;white-space:pre-line;color:#f5f0fa}
+.post-cta-box{border-radius:6px;padding:10px 14px;margin-top:10px}
+.post-cta-label{font-size:11px;font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
+.post-cta{font-size:13px;line-height:1.6;margin-top:4px;color:#f5f0fa}
+.post-pillar-row{margin-top:10px}
+.engage-card{background:#251f32;border:1px solid #3d3455;border-radius:8px;padding:20px;margin-bottom:14px;border-left-width:3px;border-left-style:solid}
+.engage-cat{font-weight:700;font-size:14px;margin-bottom:14px;font-family:'DM Mono',monospace}
+.engage-item{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.engage-bullet{font-size:12px;margin-top:3px;flex-shrink:0}
+.engage-text{font-size:14px;line-height:1.6;color:#f5f0fa}
+.comment-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.comment-card{background:#2e2740;border-radius:8px;padding:14px}
+.comment-label{font-size:12px;font-weight:700;margin-bottom:8px;font-family:'DM Mono',monospace}
+.comment-ex{font-size:12px;line-height:1.6;font-style:italic;color:#9c889b}
+.flex-tags{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.month-header{display:flex;align-items:center;gap:14px;margin-bottom:24px;flex-wrap:wrap}
+.month-header h2{font-size:20px;font-weight:700;margin:0;color:#f5f0fa}
+.key-principle{background:#251f32;border-radius:10px;padding:20px;margin-bottom:20px;border:1px solid rgba(254,86,86,.2)}
+.kp-label{font-size:13px;font-family:'DM Mono',monospace;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;color:#fe5656}
+.kp-text{font-size:15px;line-height:1.65;margin:0;color:#f5f0fa}
+@media(max-width:600px){
+  .header,.content{padding-left:16px;padding-right:16px}
+  .tab-btn{padding:10px 12px;font-size:12px}
+  h1{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="label-row">
+      <div class="dot"></div>
+      <span class="label-text">LinkedIn Strategy · 2-Month Content Calendar</span>
+    </div>
+    <h1>Owais Masood</h1>
+    <p class="subtitle">Data Science &amp; Analytics Leader · Networking-First LinkedIn Strategy</p>
+    <div class="tabs" id="tabs">
+      <button class="tab-btn active" data-tab="strategy">Strategy</button>
+      <button class="tab-btn" data-tab="month1">May 2026</button>
+      <button class="tab-btn" data-tab="month2">June 2026</button>
+      <button class="tab-btn" data-tab="engagement">Engagement Playbook</button>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="panel active" id="panel-strategy">
+    <div class="card">
+      <div class="card-row">
+        <span style="font-size:18px">🎯</span>
+        <h3 style="font-size:16px;font-weight:700;color:#f5f0fa">Positioning Statement</h3>
+      </div>
+      <p style="font-size:14px;line-height:1.7;color:#f5f0fa">
+        Owais shows up on LinkedIn as a <strong style="color:#fe5656">cross-industry data science practitioner</strong> — not a theorist, not a vendor, not a content marketer. Someone who has shipped ML to production, caught the bugs that mattered, and built the infrastructure that made models work. The voice is direct, specific, and grounded in real experience.
+      </p>
+      <div class="flex-tags" id="pos-tags"></div>
+    </div>
+    <div class="grid-3" id="goals"></div>
+    <p class="section-title">Content Pillars</p>
+    <div class="pillars-grid" id="pillars"></div>
+    <div class="card">
+      <p class="section-title">Posting Cadence &amp; Rules</p>
+      <div class="cadence-grid" id="cadence"></div>
+      <div style="color:#9c889b;font-size:12px;font-family:'DM Mono',monospace;margin-top:16px;padding-top:16px;border-top:1px solid #3d3455;margin-bottom:8px">GOLDEN RULES</div>
+      <div class="rules-grid" id="rules"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-month1">
+    <div class="month-header">
+      <h2>May 2026</h2>
+      <span id="badge-may"></span>
+      <span id="badge-exp-may"></span>
+    </div>
+    <div id="month1-weeks"></div>
+  </div>
+
+  <div class="panel" id="panel-month2">
+    <div class="month-header">
+      <h2>June 2026</h2>
+      <span id="badge-june"></span>
+      <span id="badge-exp-june"></span>
+    </div>
+    <div id="month2-weeks"></div>
+  </div>
+
+  <div class="panel" id="panel-engagement">
+    <div class="key-principle">
+      <div class="kp-label">Key Principle</div>
+      <p class="kp-text">For a networking-first strategy, <strong style="color:#fe5656">your comments are more valuable than your posts.</strong> A thoughtful comment on a thread with 200 reactions reaches more relevant people than a standalone post. Prioritise showing up in other people's conversations.</p>
+    </div>
+    <div id="engagement-tactics"></div>
+    <div class="card">
+      <p class="section-title">Comment Quality Framework</p>
+      <div class="comment-grid" id="comment-framework"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function badge(label, color) {
+  return '<span class="badge" style="background:' + color + '18;color:' + color + ';border:1px solid ' + color + '30">' + label + '</span>';
+}
+
+// Tabs
+document.getElementById('tabs').addEventListener('click', function(e) {
+  var btn = e.target.closest('.tab-btn');
+  if (!btn) return;
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+});
+
+// Positioning tags
+['Telecom · Retail · Gaming · FinServ','ML in Production','Data Infrastructure','Analytics Leadership','Pakistan Tech'].forEach(function(t) {
+  document.getElementById('pos-tags').insertAdjacentHTML('beforeend', badge(t, '#fe5656') + ' ');
+});
+
+// Goals
+[
+  { icon:'🤝', label:'Primary Goal',  val:'Build an engaged network of data leaders, analytics practitioners, and hiring managers', color:'#fe5656' },
+  { icon:'📣', label:'Secondary Goal', val:'Establish thought leadership as a cross-industry ML practitioner with production depth', color:'#be3758' },
+  { icon:'📈', label:'60-Day Target',  val:'500+ new relevant followers, 50+ meaningful conversations started in comments', color:'#9c889b' }
+].forEach(function(g) {
+  document.getElementById('goals').insertAdjacentHTML('beforeend',
+    '<div class="goal-card" style="border-left:3px solid ' + g.color + '">' +
+    '<div class="goal-icon">' + g.icon + '</div>' +
+    '<div class="goal-label">' + g.label + '</div>' +
+    '<div style="font-size:13px;line-height:1.55;color:#f5f0fa">' + g.val + '</div></div>');
+});
+
+// Pillars
+[
+  { icon:'⚡', name:'Hot Takes',            color:'#fedb99', freq:'2x / month',
+    desc:'Provocative, grounded opinions that invite debate. Your decade of cross-industry experience gives you standing to challenge orthodoxies.',
+    examples:["'Most companies don't have a data science problem — they have an infrastructure problem.'","'Data governance is the foundation of AI trustworthiness, not a compliance checkbox.'"] },
+  { icon:'📖', name:'War Stories',           color:'#fe5656', freq:'3x / month',
+    desc:'Anonymised, real experiences from your career. Specificity builds credibility. The MAU bug, the champion/challenger save, the PII redesign.',
+    examples:['The 15% MAU overreporting discovery and stakeholder rebuild',"Telling a stakeholder their best model shouldn't ship"] },
+  { icon:'🎯', name:'Questions to the Room', color:'#be3758', freq:'3x / month',
+    desc:'Polls and open questions that hand the mic to your network. The goal is replies, not likes. Be genuinely curious.',
+    examples:["'What's the hardest industry you've done analytics in?'","'Databricks vs Snowflake for ML workloads — where do you lean?'"] },
+  { icon:'🎓', name:'Practitioner Lessons',  color:'#9c889b', freq:'3x / month',
+    desc:'Specific, earned insights from real projects — not generic advice. Feature stores, medallion architecture, model validation.',
+    examples:["'I've shipped ML across 4 industries. The model was never the bottleneck.'","What the medallion architecture is actually about"] },
+  { icon:'🤝', name:'Celebrate & Amplify',   color:'#be3758', freq:'2x / month',
+    desc:'Publicly recognise connections, former colleagues, and community members. The highest-ROI networking activity on LinkedIn.',
+    examples:['Amplifying Pakistan data community voices',"Celebrating a former colleague's milestone"] },
+  { icon:'💭', name:'Reflections',            color:'#fedb99', freq:'1x / month',
+    desc:"Periodic career retrospectives. '10 years in — here's what I got wrong in year one.' These perform well and attract senior peers.",
+    examples:['Early career mistakes in data science','What adapting across 4 industries taught me about the craft'] }
+].forEach(function(p) {
+  document.getElementById('pillars').insertAdjacentHTML('beforeend',
+    '<div class="pillar">' +
+    '<div class="pillar-header"><span style="font-size:18px">' + p.icon + '</span>' +
+    '<span style="color:' + p.color + ';font-weight:700;font-size:14px">' + p.name + '</span>' +
+    badge(p.freq, p.color) + '</div>' +
+    '<p class="pillar-desc">' + p.desc + '</p>' +
+    '<div class="pillar-examples">' +
+    p.examples.map(function(ex) {
+      return '<div style="font-size:12px;line-height:1.5;margin-bottom:4px;padding-left:10px;border-left:2px solid ' + p.color + '40;color:#f5f0fa">' + ex + '</div>';
+    }).join('') + '</div></div>');
+});
+
+// Cadence
+[
+  { day:'Monday',    type:'Story / Reflection / Hot Take', note:'High-value anchor post to start the week',     color:'#fe5656' },
+  { day:'Wednesday', type:'Poll / Question',               note:'Drives comments through the rest of the week',  color:'#be3758' },
+  { day:'Friday',    type:'Lesson / Amplify / Engage',     note:'Ends the week with generosity or craft',        color:'#9c889b' }
+].forEach(function(c) {
+  document.getElementById('cadence').insertAdjacentHTML('beforeend',
+    '<div class="cadence-card" style="border-top:2px solid ' + c.color + '">' +
+    '<div style="color:' + c.color + ';font-family:DM Mono,monospace;font-weight:700;font-size:13px;margin-bottom:6px">' + c.day + '</div>' +
+    '<div style="font-size:13px;font-weight:600;margin-bottom:4px;color:#f5f0fa">' + c.type + '</div>' +
+    '<div style="font-size:12px;color:#9c889b">' + c.note + '</div></div>');
+});
+
+// Rules
+["Never open with 'I'. Start with the problem, story, or claim.",
+ "End every post with a specific question — not 'thoughts?'",
+ "Reply to every comment. Comments feed the algorithm.",
+ "Never post and ghost. Block 20 min post-publish for engagement.",
+ "Keep posts under 1,000 characters. Respect the scroll.",
+ "No hashtag spam. 2–3 targeted hashtags maximum."
+].forEach(function(r) {
+  document.getElementById('rules').insertAdjacentHTML('beforeend',
+    '<div class="rule-row"><span style="color:#fe5656;font-size:12px;margin-top:2px;flex-shrink:0">→</span>' +
+    '<span style="font-size:12px;line-height:1.5;color:#f5f0fa">' + r + '</span></div>');
+});
+
+// Post data
+var typeColors = {
+  'War Story':'#fe5656','Poll':'#be3758','Hot Take':'#fedb99',
+  'Lesson':'#9c889b','Question':'#be3758','Amplify':'#fe5656','Reflection':'#fedb99'
+};
+
+var month1 = [
+  { week:'Week 1', dates:'May 4 – 9', posts:[
+    { day:'Mon May 5',  type:'War Story',  title:'The MAU Bug',
+      hook:"I found a bug silently inflating our MAU numbers by 15% — for over a year. Three days to find it. Four hours to fix. The real work? Rebuilding trust in the data across an entire leadership team.",
+      cta:"Have you ever discovered a data quality issue that changed how leadership saw the data function?", pillar:'War Stories' },
+    { day:'Wed May 7',  type:'Poll',       title:'First Priorities Poll',
+      hook:"For data leaders: when you inherit a messy data stack, what do you tackle first?\n\nA) Data quality\nB) Documentation\nC) Stakeholder trust\nD) Architecture",
+      cta:"Drop your reasoning below 👇", pillar:'Questions to the Room' },
+    { day:'Fri May 9',  type:'Hot Take',   title:'The Dangerous Phrase',
+      hook:"The most dangerous phrase in analytics: 'we've always measured it this way.' It's not tradition — it's a reason to avoid accountability.",
+      cta:"What's your most-heard dangerous phrase in data work? I'll collect the best ones.", pillar:'Hot Takes' }
+  ]},
+  { week:'Week 2', dates:'May 11 – 16', posts:[
+    { day:'Mon May 12', type:'Lesson',   title:'The Real Bottleneck',
+      hook:"I've built ML models for a telco, a furniture retailer, a food company, and a gaming studio. The models were different every time. The mistake was almost always the same: shipping before the feature store was actually ready.",
+      cta:"What's your version of this? What keeps showing up across projects regardless of industry?", pillar:'Practitioner Lessons' },
+    { day:'Wed May 14', type:'Question', title:'Hardest Industry?',
+      hook:"Gaming analytics vs. telecom vs. retail — the data volumes, velocity, and user behaviour are completely different beasts. Gaming users can spike, churn, and return within 48 hours. Telecom churn is glacial by comparison.",
+      cta:"Data people: what's the hardest industry you've done analytics in, and what made it hard?", pillar:'Questions to the Room' },
+    { day:'Fri May 16', type:'Amplify',  title:'Celebrate a Connection',
+      hook:"Came across [Name]'s post on [topic] and it nailed something I've been thinking about for a while: [your specific take]. This is the kind of clear thinking that makes data work easier to communicate upward.",
+      cta:"Go follow [Name] if you care about [topic area].", pillar:'Celebrate & Amplify' }
+  ]},
+  { week:'Week 3', dates:'May 18 – 23', posts:[
+    { day:'Mon May 19', type:'Hot Take',   title:'Infrastructure Problem',
+      hook:"Most companies don't have a data science problem. They have a data infrastructure problem disguised as a data science problem. The model is never the bottleneck — the pipeline feeding it is.",
+      cta:"Agree or disagree? I'm curious what the counterarguments are.", pillar:'Hot Takes' },
+    { day:'Wed May 21', type:'War Story',  title:"When I Said Don't Ship",
+      hook:"I had to tell a senior stakeholder that our 'best' ML model shouldn't go to production. Champion/challenger testing caught it — the challenger underperformed on a specific customer segment that mattered commercially.",
+      cta:"Has rigorous validation ever saved you from a bad ship? What was the mechanism?", pillar:'War Stories' },
+    { day:'Fri May 23', type:'Poll',       title:'AI Self-Service Poll',
+      hook:"AI self-service analytics tools are everywhere now. My honest take: they raise the floor and might lower the ceiling. But I want to hear from you.",
+      cta:"Are these tools making data teams more or less valuable? Vote + share your reasoning 👇", pillar:'Questions to the Room' }
+  ]},
+  { week:'Week 4', dates:'May 25 – 30', posts:[
+    { day:'Mon May 26', type:'Reflection', title:'Year One Mistakes',
+      hook:"10 years in data science. Here's what I got completely wrong in year one:\n\n→ Thought better models = better outcomes\n→ Ignored the political reality of data ownership\n→ Underestimated how much time goes into data prep\n→ Conflated complexity with rigour",
+      cta:"What would you add? What did you get wrong early on?", pillar:'Reflections' },
+    { day:'Wed May 28', type:'Question',   title:'Stakeholder Wish List',
+      hook:"If you could get every stakeholder to genuinely understand one thing about working with data, what would it be?",
+      cta:"I'll start in the comments. And I'm collecting the best answers here.", pillar:'Questions to the Room' },
+    { day:'Fri May 30', type:'Poll',       title:'Hiring Priorities Poll',
+      hook:"I've hired for data roles at different stages. My view has shifted a lot on what actually matters. Technical skills can be taught — some things can't.",
+      cta:"Hiring data science talent: what matters most? A) Technical depth B) Communication C) Domain knowledge D) Curiosity/learning speed", pillar:'Questions to the Room' }
+  ]}
+];
+
+var month2 = [
+  { week:'Week 5', dates:'Jun 2 – 6', posts:[
+    { day:'Mon Jun 2',  type:'Hot Take', title:'Governance = Trust',
+      hook:"Data governance isn't a compliance checkbox. It's the foundation that determines whether AI is actually trustworthy at an organisational level. Teams treating it as box-ticking will pay for it — eventually, publicly.",
+      cta:"What's your governance hot take? Where does it get underinvested?", pillar:'Hot Takes' },
+    { day:'Wed Jun 4',  type:'Lesson',   title:'Medallion Architecture',
+      hook:"The medallion architecture (Bronze → Silver → Gold) isn't just a Databricks pattern. It's a philosophy: decide early where you catch complexity, or complexity will catch you at the worst possible moment.",
+      cta:"How do you think about layering data transformation? What's your mental model?", pillar:'Practitioner Lessons' },
+    { day:'Fri Jun 6',  type:'Question', title:'Underrated Skills',
+      hook:"Open question for the room: what's the most underrated skill in data science that almost nobody talks about in job descriptions or interviews?",
+      cta:"My answer is in the comments. Drop yours.", pillar:'Questions to the Room' }
+  ]},
+  { week:'Week 6', dates:'Jun 9 – 13', posts:[
+    { day:'Mon Jun 9',  type:'War Story', title:'The NBO Model',
+      hook:"We built a Next Best Offer propensity model scoring millions of telecom customers monthly. The model was solid. The hardest part was a business rule — making sure we didn't cannibalise our own revenue by pushing the wrong offer to the wrong customer at the wrong time.",
+      cta:"Have you ever had to layer business logic on top of a model to protect commercial outcomes? How did you handle the tension?", pillar:'War Stories' },
+    { day:'Wed Jun 11', type:'Poll',      title:'K-Means Still Relevant?',
+      hook:"K-Means clustering gets unfairly dismissed by the deep learning crowd. For behavioural segmentation in production? With interpretable clusters, business-friendly profiling, and fast inference — it's often the right call.",
+      cta:"K-Means in 2026: still relevant for behavioural segmentation or outclassed? Vote + make your case 👇", pillar:'Questions to the Room' },
+    { day:'Fri Jun 13', type:'Amplify',   title:'Analyst Readiness',
+      hook:"Analytics leaders: how do you know when a junior analyst is ready to own a product independently? Not just technically — the communication, prioritisation, the ability to push back on bad asks.",
+      cta:"I'm genuinely curious about the markers people use. Share yours.", pillar:'Celebrate & Amplify' }
+  ]},
+  { week:'Week 7', dates:'Jun 16 – 20', posts:[
+    { day:'Mon Jun 16', type:'Lesson',     title:'Writing for AI',
+      hook:"Writing a 1,200-line skill specification for an AI analytics assistant taught me more about my own data model than 6 months of building it. When you have to be precise enough for an LLM, you find every assumption you never questioned.",
+      cta:"Has documenting your work ever revealed something unexpected about the system itself?", pillar:'Practitioner Lessons' },
+    { day:'Wed Jun 18', type:'Question',   title:'Databricks vs Snowflake',
+      hook:"Databricks vs Snowflake for ML workloads — I have a view on this based on real deployments, but I want to hear from people in the trenches.",
+      cta:"Where do you lean and what's the deciding factor? Drop your context too — industry, team size, use case.", pillar:'Questions to the Room' },
+    { day:'Fri Jun 20', type:'Reflection', title:'Domain Shifts',
+      hook:"Telecom → Retail → FMCG → Gaming. Four industries, four completely different conceptions of what a 'user' is, what churn means, what success looks like. The craft travels. The intuition has to be rebuilt every time.",
+      cta:"What's the most different domain shift you've made as a data professional? What had to be unlearned?", pillar:'Reflections' }
+  ]},
+  { week:'Week 8', dates:'Jun 23 – 27', posts:[
+    { day:'Mon Jun 23', type:'Lesson',   title:'Apriori Still Works',
+      hook:"Association rule mining still has a place. Applied Apriori to retail transaction data for a global client — surfaced cross-sell opportunities their merchandising team hadn't spotted in years of gut-feel category planning. Sometimes the classic methods just work.",
+      cta:"What 'old' technique have you revived recently to good effect?", pillar:'Practitioner Lessons' },
+    { day:'Wed Jun 25', type:'Poll',     title:'Hidden ML Cost Poll',
+      hook:"Everyone talks about the cost of building a model. Nobody talks enough about the cost of keeping it alive in production.",
+      cta:"Biggest hidden cost of a production ML model? A) Retraining cycles B) Monitoring/alerting C) Stakeholder buy-in maintenance D) Feature drift", pillar:'Questions to the Room' },
+    { day:'Fri Jun 27', type:'War Story', title:'Price Elasticity in Production',
+      hook:"Most price elasticity analyses are one-off reports. We built one that was actually deployed to production — so the pricing team could run sensitivity queries on demand, not wait for a data scientist to re-run a notebook. That's the difference between analytics as a service and analytics as a product.",
+      cta:"What's a project that shifted your thinking from 'analysis' to 'product'?", pillar:'War Stories' }
+  ]}
+];
+
+function renderWeeks(weeks, containerId) {
+  var container = document.getElementById(containerId);
+  weeks.forEach(function(week) {
+    var weekEl = document.createElement('div');
+    weekEl.className = 'week-block';
+    weekEl.innerHTML =
+      '<div class="week-header">' +
+      '<span style="color:#fe5656;font-family:DM Mono,monospace;font-size:12px;font-weight:700">' + week.week + '</span>' +
+      '<span style="color:#9c889b;font-family:DM Mono,monospace;font-size:11px">' + week.dates + '</span>' +
+      '<div class="week-line"></div></div>';
+
+    week.posts.forEach(function(post) {
+      var color = typeColors[post.type] || '#fe5656';
+      var card = document.createElement('div');
+      card.className = 'post-card';
+      card.style.background = '#251f32';
+      card.style.borderColor = '#3d3455';
+      card.style.borderLeftColor = color;
+      card.innerHTML =
+        '<div class="post-header">' +
+        '<div class="post-header-left">' +
+        '<span class="post-day">' + post.day + '</span>' +
+        badge(post.type, color) +
+        '<span class="post-title">' + post.title + '</span>' +
+        '</div><span class="post-toggle">+</span></div>' +
+        '<div class="post-body">' +
+        '<span class="post-hook-label">Opening Hook</span>' +
+        '<p class="post-hook">' + post.hook + '</p>' +
+        '<div class="post-cta-box" style="background:' + color + '0D;border:1px solid ' + color + '25">' +
+        '<span class="post-cta-label" style="color:' + color + '">Engagement CTA</span>' +
+        '<p class="post-cta">' + post.cta + '</p></div>' +
+        '<div class="post-pillar-row">' + badge('Pillar: ' + post.pillar, color) + '</div>' +
+        '</div>';
+
+      card.addEventListener('click', function() {
+        var body = card.querySelector('.post-body');
+        var toggle = card.querySelector('.post-toggle');
+        var open = body.style.display === 'block';
+        body.style.display = open ? 'none' : 'block';
+        toggle.textContent = open ? '+' : '−';
+        card.style.background = open ? '#251f32' : '#2e2740';
+        card.style.borderColor = open ? '#3d3455' : color + '40';
+        card.style.borderLeftColor = color;
+      });
+      weekEl.appendChild(card);
+    });
+    container.appendChild(weekEl);
+  });
+}
+
+renderWeeks(month1, 'month1-weeks');
+renderWeeks(month2, 'month2-weeks');
+
+document.getElementById('badge-may').innerHTML     = badge('12 posts · 4 weeks', '#fe5656');
+document.getElementById('badge-exp-may').innerHTML = badge('Click any post to expand', '#9c889b');
+document.getElementById('badge-june').innerHTML    = badge('12 posts · 4 weeks', '#be3758');
+document.getElementById('badge-exp-june').innerHTML= badge('Click any post to expand', '#9c889b');
+
+// Engagement tactics
+[
+  { category:'Daily (15–20 min)', color:'#fe5656', items:[
+    "Comment meaningfully on 3–5 posts — add a data angle, a counter-example, or a question. Never just 'Great post!'",
+    "Respond to every comment on your own posts within 24 hours — this is the #1 engagement driver",
+    "React to posts from target accounts: data science leads, gaming analytics, Pakistan tech community"
+  ]},
+  { category:'Weekly', color:'#be3758', items:[
+    "Send 3–5 personalised connection requests — reference a specific post or shared context",
+    "DM 1–2 people who engaged thoughtfully on your posts to continue the conversation",
+    "Identify 2–3 trending threads in your space to drop a substantive comment on"
+  ]},
+  { category:'Target Accounts to Engage', color:'#9c889b', items:[
+    "Data science leaders at gaming studios (Riot, EA, Ubisoft analytics teams)",
+    "Analytics practitioners in Pakistan and MENA tech community",
+    "Databricks, dbt, and modern data stack thought leaders",
+    "Product analytics voices (Amplitude team, Mixpanel community)",
+    "ML engineering and MLOps practitioners (cross-industry credibility)"
+  ]},
+  { category:'Profile Optimisation (Do First)', color:'#fedb99', items:[
+    "Headline: 'Data Science & Analytics Leader | ML in Production | Gaming · Telecom · Retail · FinServ' — remove the years count",
+    "About section: Open with the MAU bug story or the NBO model — a hook, not a CV summary",
+    "Featured section: Pin your 2 best posts once they gain traction",
+    "Creator mode: Turn on — unlocks follower count and newsletter feature"
+  ]}
+].forEach(function(t) {
+  document.getElementById('engagement-tactics').insertAdjacentHTML('beforeend',
+    '<div class="engage-card" style="border-left-color:' + t.color + '">' +
+    '<div class="engage-cat" style="color:' + t.color + '">' + t.category + '</div>' +
+    t.items.map(function(item) {
+      return '<div class="engage-item"><span class="engage-bullet" style="color:' + t.color + '">▸</span><span class="engage-text">' + item + '</span></div>';
+    }).join('') + '</div>');
+});
+
+// Comment framework
+[
+  { label:'Add a data point',        color:'#fe5656', example:"'This tracks — in my experience at Teradata, the same pattern showed up in retail...'" },
+  { label:'Offer a counter-example', color:'#be3758', example:"'Interesting — we actually saw the opposite in gaming, where feature drift was more damaging than retraining cost...'" },
+  { label:'Ask a follow-up',         color:'#9c889b', example:"'Did you find that the architecture changed once you moved to streaming ingestion, or did the medallion layers hold?'" },
+  { label:'Share the nuance',        color:'#fedb99', example:"'This depends heavily on org maturity — at early-stage startups, stakeholder trust often IS the data quality problem...'" }
+].forEach(function(c) {
+  document.getElementById('comment-framework').insertAdjacentHTML('beforeend',
+    '<div class="comment-card">' +
+    '<div class="comment-label" style="color:' + c.color + '">→ ' + c.label + '</div>' +
+    '<div class="comment-ex">' + c.example + '</div></div>');
+});
+</script>
+</body>
+</html>
