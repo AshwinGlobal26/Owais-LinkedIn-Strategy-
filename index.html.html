@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wardeh Tariq · LinkedIn Strategy | Global</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body { background: #1a1320; }
+    #root { min-height: 100%; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #1a1320; }
+    ::-webkit-scrollbar-thumb { background: #332a3f; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    // ── Brand Colors ──────────────────────────────────────────
+    const DARK    = "#1a1320";
+    const MID     = "#231a2e";
+    const SURFACE = "#2d2138";
+    const NAVY    = "#332a3f";
+    const CRIMSON = "#be3758";
+    const CORAL   = "#fe5656";
+    const MAUVE   = "#9c889b";
+    const GOLD    = "#fedb99";
+    const TEXT    = "#f5f0f8";
+    const MUTED   = "#9c889b";
+
+    // ── Logo (base64) ─────────────────────────────────────────
+    const LOGO_B64 = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCABNAE8DASIAAhEBAxEB/8QAGwAAAQUBAQAAAAAAAAAAAAAAAAEFBgcIAgP/xAA6EAABAwQAAwMJAw0AAAAAAAABAAIDBAUGEQcSITF0pCZBRlFhsrPS4xMVdRQiJDJCRVVxgaGio+L/xAAaAQACAwEBAAAAAAAAAAAAAAAABQMEBgIH/8QAMhEAAQMCAgYHCQEAAAAAAAAAAQACAwQRBTEGEkFxsdETFCFSU2GSFiMkJUJDUaGikf/aAAwDAQACEQMRAD8AyShCFMukIQhCEISoQhIlQhCEIQhCEiEqEIUi4e2ekvV+dT1oc6GOF0pY065tEDRI6/tKyG4Ni/ntf++T5lCuDg3k9R3J3vsVuNaqc73B1gVv9HKGmmo9eSME3OYB4qNtwTFv4X4iX5l6swDF3b1aHHXU6nl6f5KSMGjtP9mqKZsckcrmtL9Eb8/sVN87xkSn7sNo2tJ6FvpHJV8MAxM/unxEvzL0bw+xLz2nxEvzKUAAklvZvovRrVwZn94qZuFUR+y30jkoFleA43BjdwqqKifTVFPTvmY9sz3dWtLtEOJGjrSplaTy9usRvPcJ/huWbVeonue03N1h9LaSGnnj6JgbcbBbb5LlCVCurJqbcGRvKKnuTvfYrfa1VFwWG8pqe5P99iuFrUtqjZ69M0WHwA3lLGxz3BjWkuJ0AB2lTC7YlDYaemORV7qWrnYJG0lPAJpI2Hzybc0NJ9Wz/RNWEzUlJltpqa7X5NHVxukJ7AA4dT7B2qa8e7fWNzyorZdmiqI4nxSAb23lAOvXoj+6gbYDXOxMauaQ1LKZpsHAm/5sR2D/AG5UWv1gt9DZKC7Wq8feNNVPdG9r6f7GSF7QDyubzOHYfWmZjVKr3iLLZhlvySO5mop66TkihMHI5p0d835xA/VPZtRlrVWlNjkmFE8SRkh+tYkXtbI5ZDLLJNWYDyQvPcJ/huWaVprMW6w+9fh8/wANyzMmOGm7XLEaai08W48VylQhMliVOuCg3lVT3F/vsVxtaqe4IDeV1PcX/EjVzNalNYbSL0/RQfLxvKGDRB9SlNDldxZZTaK2aKtpI2/o8NVE2Tk9jSRzN/kDpRyNm3ALsNaXkgDp0VIk2vdaCWKOUhjxfbuTzd8lvF1tVNaaqeIUFK7mgp44GMbGdEdCBs9p7Se1NbWoa1erWqB7yc1ahhZENVgsPJNGZDyOvX4fP8NyzEtQ5m3yMvf4dUfDcsvpthRuxy8+03Hv4tx4pEIQmixCecOyCfG7x94QwMnDozHJG465mkg9D5jsBTkcXQPR7xv/AAqtSqKSnjkN3BM6PGa2jj6OF9huB4gq1Bxf16O+N+mum8YQ3sxvxv01VKFH1KA/T+yrY0nxTxf5byVsjjJr0b8b9NdDjPr0a8d9NVIlXPUKfu/s8117UYr4v8t5Ky8l4s1F1sdXbaeyspDVROifK6p+001w07Q5R10T12q0QhTxQRwizBZLK7EamveH1DtYjsyA4WX/2Q==";
+
+    // ── Content Data ──────────────────────────────────────────
+    const summary = `Senior Project Manager and programme delivery leader with 12+ years of experience operationalising strategy across complex, cross-functional environments in games, tech, and professional services. Proven track record of building delivery infrastructure from the ground up — including governance frameworks, RACI structures, risk escalation pathways, and automated reporting systems — that reduce friction and improve visibility at scale.
+
+At Epic Games (Quixel), led programme-level operations for a globally distributed content team, managing a combined pipeline of 3,000+ assets per year and delivering 54 collections across 3 product lines. Designed and implemented centralised tracking systems, capacity-driven planning cycles, and tailored stakeholder communication frameworks that treated each delivery team as a distinct client.
+
+Actively integrates AI tools — including Claude, Gemini, and ChatGPT — into operational workflows to automate reporting, surface risks earlier, and accelerate decision-making. Built a custom Asset Tracker MCP integration to deliver real-time legal clearance visibility and cross-functional sign-off workflows directly within existing tooling.
+
+Known for operating at both strategic and execution levels: capable of framing ambiguous problems, defining measurable success criteria, and sustaining delivery through leadership transitions and shifting organisational priorities. Prior experience spans Pakistan, MENA, and Europe across games, innovation programmes, software deployment, and enterprise sales.`;
+
+    const strategy = [
+      { icon: "🎯", title: "Profile Positioning", accent: CRIMSON, items: [
+        "Headline: Senior Project Manager | Programme & Operations Delivery | Games · Tech · AI-Augmented Workflows",
+        "Feature the updated summary — lead with infrastructure-building and AI integration",
+        "Add a Featured section: pin a post about your Asset Tracker MCP or AI workflow automation",
+        "Skills: Ensure top 3 are Programme Management, Cross-Functional Delivery, AI-Augmented Operations",
+      ]},
+      { icon: "🤝", title: "Networking Targets", accent: CORAL, items: [
+        "Producers & PMs at game studios (Unity, Ubisoft, EA, Riot, Bungie, CD Projekt)",
+        "Ops leads and programme managers in tech (product orgs, platform companies)",
+        "PMI community members — especially those completing PMP coursework",
+        "MENA-based remote hiring managers and talent leads",
+        "AI-in-PM communities and newsletter authors",
+      ]},
+      { icon: "💬", title: "Engagement Rules", accent: MAUVE, items: [
+        "Comment on 3–5 posts per day from target personas — add genuine insight, not generic praise",
+        "Engage within the first 30 mins of posting for algorithmic lift",
+        "Reply to every comment on your own posts within 24 hours",
+        "DM new connections with a personalised note referencing their work — no pitch",
+        "Join 2–3 LinkedIn groups: PMI, Game Production, AI for PMs",
+      ]},
+      { icon: "📊", title: "Content Pillars", accent: GOLD, items: [
+        "🏗️ Systems & Infrastructure — how you build tracking, governance, and operating rhythms",
+        "🤖 AI in PM — real workflows using Claude, Gemini, ChatGPT in daily PM work",
+        "🎮 Games Production — behind-the-scenes of content pipelines and studio delivery",
+        "👩‍💼 Career & Leadership — lessons on transitions, mentorship, cross-cultural delivery",
+      ]},
+    ];
+
+    const weeks = [
+      { week:"Week 1", month:"Month 1", theme:"🏗️ Systems & Infrastructure", posts:[
+        { day:"Mon", type:"Story Post", pillar:"Systems",
+          hook:"I once inherited a team of 43 artists with no tracking system, no RACI, and no reporting cadence. Here's what I built in the first 30 days.",
+          format:"Short-form narrative → 5 bullet points → CTA: 'What's the first system you set up on a new team?'",
+          engagement:"Comment on 5 posts from producers/PMs about team onboarding" },
+        { day:"Thu", type:"Carousel Concept", pillar:"Systems",
+          hook:"The 4 artefacts every PM should have before a project kicks off (most teams only have 1).",
+          format:"Text-based carousel: RACI · Risk Register · Stakeholder Comms Plan · Capacity Model",
+          engagement:"Connect with 10 PMs from game studios — personalised note referencing their studio" },
+      ]},
+      { week:"Week 2", month:"Month 1", theme:"🤖 AI in PM Workflows", posts:[
+        { day:"Tue", type:"How-I-Work Post", pillar:"AI in PM",
+          hook:"I used Claude to auto-generate Asana tasks and Slack updates from collection data. Here's the exact prompt structure I used.",
+          format:"Process breakdown — context → prompt logic → output example → time saved. End with: 'Are you using AI in your PM workflow? What's working?'",
+          engagement:"Follow 10 AI-in-PM creators. Comment meaningfully on their recent posts." },
+        { day:"Fri", type:"Myth-Busting", pillar:"AI in PM",
+          hook:"\"AI will replace project managers.\" Here's why that's the wrong framing — and what AI actually does to PM work.",
+          format:"Opinion piece. 3 things AI can't replace: stakeholder trust, ambiguity navigation, cross-functional influence.",
+          engagement:"Engage in PMI LinkedIn group — respond to 2 threads about AI in project management" },
+      ]},
+      { week:"Week 3", month:"Month 1", theme:"🎮 Games Production", posts:[
+        { day:"Mon", type:"Behind the Scenes", pillar:"Games",
+          hook:"What does it actually take to ship 3,000+ assets a year? A look inside content production at scale.",
+          format:"Narrative post. Cover: pipeline stages, stakeholder count, risk surfaces, tooling. Non-confidential and general enough.",
+          engagement:"Connect with 10 Associate/Senior Producers at game companies. Reference a specific thing from their profile." },
+        { day:"Thu", type:"Lessons Learned", pillar:"Games",
+          hook:"54 collections shipped. Here are the 3 things that broke every time — and how we fixed them.",
+          format:"Numbered list post. Keep it honest and specific. Avoid jargon.",
+          engagement:"Comment on posts from Riot, EA, Unity, Bungie PMs/Producers about production challenges" },
+      ]},
+      { week:"Week 4", month:"Month 1", theme:"👩‍💼 Career & Leadership", posts:[
+        { day:"Tue", type:"Career Story", pillar:"Leadership",
+          hook:"I was promoted to Producer within 8 months — while being the sole producer for 43 artists across 2 continents. Here's what I learned about stepping up before you feel ready.",
+          format:"Personal narrative. Honest, specific, not self-congratulatory. End with a question about their own leap moments.",
+          engagement:"Reach out to 5 people who've commented on your posts — thank them, start a real conversation" },
+        { day:"Fri", type:"Opinion / Hot Take", pillar:"Leadership",
+          hook:"Most leadership transitions fail not because of the new leader — but because no one designed the handover.",
+          format:"Short punchy opinion post. 3 things that make leadership transitions work. Based on your own experience across 3+ teams.",
+          engagement:"Join a PMI or Game Production LinkedIn group and contribute to an existing thread" },
+      ]},
+      { week:"Week 5", month:"Month 2", theme:"🤖 AI Deep Dive", posts:[
+        { day:"Mon", type:"Tool Breakdown", pillar:"AI in PM",
+          hook:"I built a custom Asset Tracker MCP that surfaces legal clearance risks in real time. Here's how it changed our delivery process.",
+          format:"Technical-but-accessible breakdown. What is MCP? What problem did it solve? What changed? Screenshot/diagram optional.",
+          engagement:"DM 5 people who engaged with your AI posts — deepen the conversation" },
+        { day:"Thu", type:"Comparison Post", pillar:"AI in PM",
+          hook:"Claude vs Gemini vs ChatGPT for PM work — here's how I actually use each one differently.",
+          format:"Side-by-side breakdown by use case: reporting, risk flagging, async comms drafting, stakeholder summaries.",
+          engagement:"Comment on 5 posts from AI tool creators or PM influencers using AI" },
+      ]},
+      { week:"Week 6", month:"Month 2", theme:"🏗️ Governance & Stakeholders", posts:[
+        { day:"Tue", type:"Framework Post", pillar:"Systems",
+          hook:"Most PMs confuse a stakeholder list with a stakeholder strategy. Here's the difference — and how I built comms plans that treated each team as its own client.",
+          format:"Practical framework. Tiered stakeholder model → cadence design → communication format per audience.",
+          engagement:"Connect with 10 programme managers at tech companies (not games) — expanding your industry footprint" },
+        { day:"Fri", type:"Story + Framework", pillar:"Systems",
+          hook:"The importance-urgency matrix saved a release deadline. Here's exactly how we ran the prioritisation session.",
+          format:"Story first (the crisis), then the structured approach. Concrete and replicable.",
+          engagement:"Engage with 5 posts in your network about prioritisation or resource allocation" },
+      ]},
+      { week:"Week 7", month:"Month 2", theme:"🎮 Cross-Cultural & Remote Delivery", posts:[
+        { day:"Mon", type:"Experience Post", pillar:"Games",
+          hook:"I've managed delivery across Pakistan, Saudi Arabia, Europe, and the US — all remote. Here's what breaks in cross-cultural PM and what actually fixes it.",
+          format:"Real examples. Time zones, communication styles, trust-building, async by default.",
+          engagement:"Connect with remote-first hiring managers and ops leads at distributed companies" },
+        { day:"Thu", type:"Networking Post", pillar:"Community",
+          hook:"If you're a PM, producer, or ops lead working in games or tech — I'd love to connect. Here's what I'm focused on right now.",
+          format:"Open networking post. Be specific about who you want to meet and why. Invite replies.",
+          engagement:"This post IS the engagement play — respond to every single comment personally" },
+      ]},
+      { week:"Week 8", month:"Month 2", theme:"📌 Reflection & Forward Look", posts:[
+        { day:"Tue", type:"Reflection Post", pillar:"Leadership",
+          hook:"12 years of PM work. What I'd tell myself on Day 1.",
+          format:"Personal, warm, honest. Not a humble-brag list — real lessons. 5 genuine takeaways.",
+          engagement:"Compile a list of top 20 commenters/engagers over 2 months — send a genuine thank-you DM" },
+        { day:"Fri", type:"Vision Post", pillar:"AI in PM",
+          hook:"Where I think AI-augmented project management is headed in the next 3 years — and what PMs need to build now.",
+          format:"Forward-looking opinion. Position yourself as someone thinking ahead, not just executing.",
+          engagement:"Comment on posts from PM thought leaders and futurists in your niche" },
+      ]},
+    ];
+
+    const pillars = {
+      "Systems":    { color: CRIMSON, label: "Systems & Infrastructure" },
+      "AI in PM":   { color: CORAL,   label: "AI in PM" },
+      "Games":      { color: MAUVE,   label: "Games Production" },
+      "Leadership": { color: GOLD,    label: "Career & Leadership" },
+      "Community":  { color: "#e8a0b0", label: "Community" },
+    };
+
+    // ── Sub-components ─────────────────────────────────────────
+    function DancerAccent({ style }) {
+      return (
+        <svg viewBox="0 0 120 200" style={style} fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="55" cy="40"  rx="18" ry="28" fill={CRIMSON} opacity="0.7" transform="rotate(-20 55 40)" />
+          <ellipse cx="48" cy="38"  rx="12" ry="22" fill={CORAL}   opacity="0.6" transform="rotate(-30 48 38)" />
+          <ellipse cx="60" cy="35"  rx="10" ry="18" fill={GOLD}    opacity="0.5" transform="rotate(-10 60 35)" />
+          <ellipse cx="52" cy="80"  rx="14" ry="35" fill={CRIMSON} opacity="0.6" transform="rotate(10 52 80)" />
+          <ellipse cx="44" cy="82"  rx="10" ry="28" fill={CORAL}   opacity="0.55" transform="rotate(5 44 82)" />
+          <ellipse cx="58" cy="78"  rx="8"  ry="24" fill={MAUVE}   opacity="0.5" transform="rotate(15 58 78)" />
+          <ellipse cx="50" cy="130" rx="12" ry="30" fill={CRIMSON} opacity="0.55" transform="rotate(-15 50 130)" />
+          <ellipse cx="42" cy="132" rx="9"  ry="24" fill={CORAL}   opacity="0.5" transform="rotate(-20 42 132)" />
+          <ellipse cx="56" cy="128" rx="7"  ry="20" fill={GOLD}    opacity="0.45" transform="rotate(-10 56 128)" />
+          <ellipse cx="47" cy="172" rx="10" ry="22" fill={CRIMSON} opacity="0.5" transform="rotate(20 47 172)" />
+          <ellipse cx="38" cy="174" rx="7"  ry="18" fill={MAUVE}   opacity="0.45" transform="rotate(25 38 174)" />
+          <ellipse cx="54" cy="170" rx="6"  ry="16" fill={CORAL}   opacity="0.4" transform="rotate(15 54 170)" />
+        </svg>
+      );
+    }
+
+    // ── Main App ───────────────────────────────────────────────
+    function App() {
+      const [tab, setTab]               = useState("summary");
+      const [expandedWeek, setExpWeek]  = useState(null);
+      const [expandedPost, setExpPost]  = useState(null);
+
+      const month1 = weeks.filter(w => w.month === "Month 1");
+      const month2 = weeks.filter(w => w.month === "Month 2");
+
+      const css = `
+        .sans { font-family: 'Jost', sans-serif; }
+        .tab-btn {
+          background: none; border: none; cursor: pointer;
+          padding: 9px 22px; border-radius: 4px; font-size: 13px;
+          font-weight: 500; transition: all 0.25s; font-family: 'Jost', sans-serif;
+          color: ${MUTED}; letter-spacing: 0.08em; text-transform: uppercase;
+        }
+        .tab-btn:hover { color: ${TEXT}; }
+        .tab-btn.active { background: ${CRIMSON}; color: white; }
+        .week-card {
+          background: ${MID}; border: 1px solid #3d2e4a;
+          border-radius: 4px; overflow: hidden;
+          margin-bottom: 10px; transition: border-color 0.2s;
+        }
+        .week-card:hover { border-color: ${CRIMSON}60; }
+        .week-header {
+          padding: 16px 20px; cursor: pointer;
+          display: flex; align-items: center; justify-content: space-between;
+        }
+        .post-card {
+          background: ${SURFACE}; border-radius: 4px; padding: 16px;
+          cursor: pointer; border: 1px solid transparent;
+          transition: all 0.2s; margin-bottom: 8px;
+        }
+        .post-card:hover  { border-color: #4a3558; }
+        .post-card.open   { border-color: ${CRIMSON}50; }
+        .chip {
+          display: inline-flex; align-items: center; gap: 5px;
+          padding: 3px 10px; border-radius: 2px;
+          font-size: 10px; font-weight: 600;
+          letter-spacing: 0.08em; text-transform: uppercase;
+          font-family: 'Jost', sans-serif;
+        }
+        .strategy-card {
+          background: ${MID}; border: 1px solid #3d2e4a;
+          border-radius: 4px; padding: 22px;
+          position: relative; overflow: hidden;
+        }
+        .fade-in { animation: fadeUp 0.3s ease both; }
+        @keyframes fadeUp {
+          from { opacity:0; transform:translateY(6px); }
+          to   { opacity:1; transform:translateY(0); }
+        }
+        .highlight {
+          border-left: 2px solid ${CORAL}; padding: 12px 16px;
+          background: ${CORAL}1a; border-radius: 0 4px 4px 0;
+          font-family: 'Jost', sans-serif; font-size: 13px;
+          color: #f0cdd0; line-height: 1.7; margin: 16px 0;
+        }
+        p { margin-bottom: 14px; }
+        .metric-box {
+          background: ${NAVY}; border: 1px solid #4d3860;
+          border-radius: 4px; padding: 18px; text-align: center;
+        }
+        @media (max-width: 640px) {
+          .grid-2 { grid-template-columns: 1fr !important; }
+          .grid-3 { grid-template-columns: 1fr 1fr !important; }
+          .grid-5 { grid-template-columns: 1fr 1fr !important; }
+          .grid-4 { grid-template-columns: 1fr 1fr !important; }
+        }
+      `;
+
+      return (
+        <div style={{ fontFamily:"'Cormorant Garamond','Georgia',serif", background:DARK, color:TEXT, minHeight:"100vh", paddingBottom:60 }}>
+          <style>{css}</style>
+
+          {/* ── HEADER ── */}
+          <div style={{ background:"linear-gradient(160deg,#0e0b14 0%,#1a1320 50%,#211529 100%)", borderBottom:`1px solid #3d2e4a`, padding:"40px 32px 32px", position:"relative", overflow:"hidden" }}>
+            <div style={{ position:"absolute", top:-60, right:-60, width:320, height:320, background:`radial-gradient(circle,${CRIMSON}18 0%,transparent 65%)`, borderRadius:"50%", pointerEvents:"none" }} />
+            <div style={{ position:"absolute", bottom:-40, left:80,  width:200, height:200, background:`radial-gradient(circle,${CORAL}0d 0%,transparent 70%)`,   borderRadius:"50%", pointerEvents:"none" }} />
+            <DancerAccent style={{ position:"absolute", right:180, top:-10, width:90, height:160, opacity:0.35 }} />
+
+            <div style={{ maxWidth:860, margin:"0 auto", position:"relative" }}>
+              <div style={{ display:"flex", alignItems:"center", gap:16, marginBottom:24 }}>
+                <div style={{ width:50, height:50, borderRadius:3, flexShrink:0, overflow:"hidden" }}>
+                  <img src={LOGO_B64} alt="Global Logo" style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
+                </div>
+                <div>
+                  <div style={{ fontFamily:"'Jost',sans-serif", fontSize:10, color:MAUVE, letterSpacing:"0.18em", textTransform:"uppercase", marginBottom:3 }}>Global · The Business Design Company</div>
+                  <div style={{ fontFamily:"'Jost',sans-serif", fontSize:11, color:"#5c4a6a", letterSpacing:"0.06em" }}>LinkedIn Strategy Document</div>
+                </div>
+              </div>
+              <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"space-between", flexWrap:"wrap", gap:12 }}>
+                <div>
+                  <div style={{ fontFamily:"'Jost',sans-serif", fontSize:11, color:CORAL, letterSpacing:"0.16em", textTransform:"uppercase", marginBottom:8 }}>Prepared for</div>
+                  <div style={{ fontSize:38, fontWeight:700, letterSpacing:"-0.01em", lineHeight:1.1, color:TEXT }}>Wardeh Tariq</div>
+                  <div style={{ fontFamily:"'Jost',sans-serif", fontSize:13, color:MAUVE, marginTop:6, letterSpacing:"0.04em" }}>Senior Project Manager · 2-Month LinkedIn Networking &amp; Content Strategy</div>
+                </div>
+                <div style={{ border:`1px solid ${CRIMSON}50`, padding:"8px 16px", borderRadius:3, fontFamily:"'Jost',sans-serif", fontSize:11, color:CRIMSON, letterSpacing:"0.1em", textTransform:"uppercase" }}>
+                  April 2026
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ── TABS ── */}
+          <div style={{ maxWidth:860, margin:"24px auto 0", padding:"0 32px" }}>
+            <div style={{ display:"flex", gap:4, background:MID, padding:4, borderRadius:4, border:`1px solid #3d2e4a`, width:"fit-content" }}>
+              {[{id:"summary",label:"Profile Summary"},{id:"strategy",label:"Strategy"},{id:"calendar",label:"Content Calendar"}].map(t => (
+                <button key={t.id} className={`tab-btn sans${tab===t.id?" active":""}`} onClick={() => setTab(t.id)}>{t.label}</button>
+              ))}
+            </div>
+          </div>
+
+          <div style={{ maxWidth:860, margin:"24px auto 0", padding:"0 32px" }}>
+
+            {/* ── SUMMARY ── */}
+            {tab === "summary" && (
+              <div className="fade-in">
+                <div style={{ display:"flex", alignItems:"flex-start", justifyContent:"space-between", marginBottom:22, flexWrap:"wrap", gap:12 }}>
+                  <div>
+                    <div style={{ fontSize:28, fontWeight:700, marginBottom:4 }}>Rewritten Profile Summary</div>
+                    <div className="sans" style={{ fontSize:12, color:MUTED }}>Same context · Infrastructure-led narrative · Stronger technical positioning</div>
+                  </div>
+                  <div className="chip sans" style={{ background:`${CORAL}18`, color:CORAL, border:`1px solid ${CORAL}30` }}>✓ Ready to copy</div>
+                </div>
+
+                <div className="grid-3" style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:12, marginBottom:24 }}>
+                  {[
+                    { label:"Years Experience",   value:"12+",    sub:"PM & Programme",      color:CRIMSON },
+                    { label:"Assets Managed p/y", value:"3,000+", sub:"Epic Games / Quixel", color:CORAL },
+                    { label:"AI Tools in Use",    value:"3 + MCP",sub:"Claude · Gemini · GPT",color:GOLD },
+                  ].map(m => (
+                    <div key={m.label} className="metric-box">
+                      <div style={{ fontSize:26, fontWeight:700, color:m.color, marginBottom:4, letterSpacing:"-0.02em" }}>{m.value}</div>
+                      <div className="sans" style={{ fontSize:11, fontWeight:600, marginBottom:2, color:TEXT, letterSpacing:"0.06em", textTransform:"uppercase" }}>{m.label}</div>
+                      <div className="sans" style={{ fontSize:10, color:MUTED }}>{m.sub}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{ background:MID, border:`1px solid #3d2e4a`, borderRadius:4, overflow:"hidden" }}>
+                  <div style={{ background:`linear-gradient(90deg,${CRIMSON}22,${CORAL}0d,transparent)`, padding:"14px 24px", borderBottom:"1px solid #3d2e4a", display:"flex", alignItems:"center", gap:12 }}>
+                    <div style={{ width:28, height:28, borderRadius:2, background:`${CRIMSON}30`, display:"flex", alignItems:"center", justifyContent:"center" }}>
+                      <DancerAccent style={{ width:18, height:26, opacity:0.8 }} />
+                    </div>
+                    <div className="sans" style={{ fontSize:10, color:MAUVE, letterSpacing:"0.14em", textTransform:"uppercase", fontWeight:600 }}>LinkedIn · About Section</div>
+                  </div>
+                  <div style={{ padding:"26px 28px", lineHeight:1.85, color:"#e8ddef", fontSize:15.5 }}>
+                    {summary.split('\n\n').map((para, i) => <p key={i}>{para}</p>)}
+                  </div>
+                </div>
+
+                <div style={{ marginTop:16, background:MID, borderRadius:4, padding:20, border:`1px solid #3d2e4a` }}>
+                  <div className="sans" style={{ fontSize:11, fontWeight:700, color:GOLD, marginBottom:14, letterSpacing:"0.1em", textTransform:"uppercase" }}>Key Editorial Changes</div>
+                  <div className="grid-2" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
+                    {[
+                      ["Led with infrastructure-building, not traits",     "Removed passive 'actively leverages' framing"],
+                      ["MCP integration called out by name",                "Metrics preserved and embedded naturally"],
+                      ["Ends on geographic scope for remote positioning",   "MENA + Europe context retained throughout"],
+                    ].map(([after, before], i) => (
+                      <div key={i} style={{ background:SURFACE, borderRadius:3, padding:12, border:`1px solid #3d2e4a` }}>
+                        <div className="sans" style={{ fontSize:12, color:CORAL, marginBottom:4 }}>✓ {after}</div>
+                        <div className="sans" style={{ fontSize:11, color:MUTED }}>↻ {before}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* ── STRATEGY ── */}
+            {tab === "strategy" && (
+              <div className="fade-in">
+                <div style={{ marginBottom:22 }}>
+                  <div style={{ fontSize:28, fontWeight:700, marginBottom:4 }}>2-Month LinkedIn Strategy</div>
+                  <div className="sans" style={{ fontSize:12, color:MUTED }}>Networking-first · Engagement-led · Content as a relationship tool</div>
+                </div>
+                <div className="highlight">
+                  <strong>Primary Goal:</strong> Build a warm network of 50–80 meaningful connections in games, tech, and AI-PM spaces — and be recognised as a credible voice in programme delivery and AI-augmented operations.
+                </div>
+                <div className="grid-2" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:14, marginTop:20 }}>
+                  {strategy.map((s, i) => (
+                    <div key={i} className="strategy-card" style={{ borderLeft:`3px solid ${s.accent}` }}>
+                      <div style={{ fontSize:24, marginBottom:10 }}>{s.icon}</div>
+                      <div className="sans" style={{ fontSize:14, fontWeight:700, marginBottom:14, color:TEXT }}>{s.title}</div>
+                      <ul style={{ listStyle:"none", display:"flex", flexDirection:"column", gap:9 }}>
+                        {s.items.map((item, j) => (
+                          <li key={j} style={{ display:"flex", gap:8 }}>
+                            <span style={{ color:s.accent, flexShrink:0, fontFamily:"'Jost',sans-serif", fontSize:13, marginTop:1 }}>→</span>
+                            <span className="sans" style={{ fontSize:12.5, color:"#d4c8dc", lineHeight:1.55 }}>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{ marginTop:18, background:MID, borderRadius:4, padding:22, border:`1px solid #3d2e4a` }}>
+                  <div className="sans" style={{ fontSize:11, fontWeight:700, color:MAUVE, marginBottom:16, letterSpacing:"0.1em", textTransform:"uppercase" }}>Weekly Engagement Rhythm</div>
+                  <div className="grid-5" style={{ display:"grid", gridTemplateColumns:"repeat(5,1fr)", gap:8 }}>
+                    {[
+                      { day:"Mon", action:"Post + comment on 5 posts from target personas" },
+                      { day:"Tue", action:"Send 5–8 personalised connection requests" },
+                      { day:"Wed", action:"LinkedIn groups + reply to all post comments" },
+                      { day:"Thu", action:"Post + DM 2–3 people who recently engaged" },
+                      { day:"Fri", action:"Review reach, reply to comments, log new connections" },
+                    ].map(d => (
+                      <div key={d.day} style={{ background:SURFACE, borderRadius:3, padding:14, border:`1px solid #3d2e4a`, borderTop:`2px solid ${CRIMSON}` }}>
+                        <div className="sans" style={{ fontSize:12, fontWeight:700, color:CRIMSON, marginBottom:8, letterSpacing:"0.06em" }}>{d.day}</div>
+                        <div className="sans" style={{ fontSize:11, color:MUTED, lineHeight:1.65 }}>{d.action}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div style={{ marginTop:14, background:MID, borderRadius:4, padding:22, border:`1px solid #3d2e4a` }}>
+                  <div className="sans" style={{ fontSize:11, fontWeight:700, color:MAUVE, marginBottom:16, letterSpacing:"0.1em", textTransform:"uppercase" }}>2-Month Targets</div>
+                  <div className="grid-4" style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:10 }}>
+                    {[
+                      { metric:"60–80",  label:"New meaningful connections", color:CRIMSON },
+                      { metric:"16",     label:"Posts published",            color:CORAL },
+                      { metric:"200+",   label:"Comments on others' posts",  color:MAUVE },
+                      { metric:"5–10",   label:"Real DM conversations",      color:GOLD },
+                    ].map(m => (
+                      <div key={m.label} style={{ textAlign:"center", background:SURFACE, borderRadius:3, padding:16, border:`1px solid ${m.color}30`, borderTop:`2px solid ${m.color}` }}>
+                        <div style={{ fontSize:26, fontWeight:700, color:m.color, marginBottom:6, letterSpacing:"-0.02em" }}>{m.metric}</div>
+                        <div className="sans" style={{ fontSize:11, color:MUTED, lineHeight:1.5 }}>{m.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* ── CALENDAR ── */}
+            {tab === "calendar" && (
+              <div className="fade-in">
+                <div style={{ marginBottom:20 }}>
+                  <div style={{ fontSize:28, fontWeight:700, marginBottom:4 }}>Content Calendar</div>
+                  <div className="sans" style={{ fontSize:12, color:MUTED }}>8 weeks · 2 posts per week · Each post paired with a daily engagement action</div>
+                </div>
+
+                <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:20 }}>
+                  {[
+                    { label:"Systems & Infrastructure", color:CRIMSON },
+                    { label:"AI in PM",                 color:CORAL },
+                    { label:"Games Production",         color:MAUVE },
+                    { label:"Career & Leadership",      color:GOLD },
+                  ].map(p => (
+                    <div key={p.label} className="chip sans" style={{ background:`${p.color}18`, color:p.color, border:`1px solid ${p.color}35` }}>
+                      <span style={{ width:5, height:5, borderRadius:"50%", background:p.color, display:"inline-block" }} />
+                      {p.label}
+                    </div>
+                  ))}
+                </div>
+
+                {[
+                  { label:"Month 1", data:month1, prefix:"m1", accentColor:CRIMSON },
+                  { label:"Month 2", data:month2, prefix:"m2", accentColor:CORAL },
+                ].map(({ label, data, prefix, accentColor }) => (
+                  <div key={prefix}>
+                    <div style={{ display:"flex", alignItems:"center", gap:12, margin:"20px 0 10px" }}>
+                      <div style={{ height:1, flex:1, background:`linear-gradient(90deg,${accentColor}50,transparent)` }} />
+                      <div className="sans" style={{ fontSize:10, fontWeight:700, color:accentColor, letterSpacing:"0.14em", textTransform:"uppercase" }}>{label}</div>
+                    </div>
+
+                    {data.map((w, wi) => {
+                      const key    = `${prefix}-${wi}`;
+                      const isOpen = expandedWeek === key;
+                      return (
+                        <div key={wi} className="week-card">
+                          <div className="week-header" onClick={() => setExpWeek(isOpen ? null : key)}>
+                            <div style={{ display:"flex", alignItems:"center", gap:14 }}>
+                              <div style={{ width:38, height:38, borderRadius:3, background:`${accentColor}18`, border:`1px solid ${accentColor}35`, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center" }}>
+                                <span className="sans" style={{ fontSize:9, color:accentColor, fontWeight:700, letterSpacing:"0.06em", textTransform:"uppercase" }}>WK</span>
+                                <span className="sans" style={{ fontSize:15, color:accentColor, fontWeight:700, lineHeight:1 }}>{wi + (prefix==="m2"?5:1)}</span>
+                              </div>
+                              <div>
+                                <div className="sans" style={{ fontWeight:600, fontSize:13 }}>{w.week}</div>
+                                <div className="sans" style={{ fontSize:11, color:MUTED, marginTop:2 }}>{w.theme}</div>
+                              </div>
+                            </div>
+                            <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+                              <div className="chip sans" style={{ background:"#2d2138", color:MUTED }}>{w.posts.length} posts</div>
+                              <span className="sans" style={{ color:MUTED, fontSize:20, lineHeight:1 }}>{isOpen?"−":"+"}</span>
+                            </div>
+                          </div>
+
+                          {isOpen && (
+                            <div style={{ padding:"0 18px 18px" }}>
+                              {w.posts.map((post, pi) => {
+                                const pid        = `${prefix}-${wi}-${pi}`;
+                                const pm         = pillars[post.pillar] || { color:MUTED, label:post.pillar };
+                                const isExpanded = expandedPost === pid;
+                                return (
+                                  <div key={pi} className={`post-card${isExpanded?" open":""}`} onClick={() => setExpPost(isExpanded ? null : pid)}>
+                                    <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+                                      <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+                                        <div style={{ width:30, height:30, borderRadius:2, background:`${pm.color}20`, border:`1px solid ${pm.color}35`, display:"flex", alignItems:"center", justifyContent:"center" }}>
+                                          <span className="sans" style={{ fontSize:11, fontWeight:700, color:pm.color }}>{post.day.slice(0,2)}</span>
+                                        </div>
+                                        <div>
+                                          <div className="sans" style={{ fontSize:13, fontWeight:600 }}>{post.type}</div>
+                                          <div className="chip sans" style={{ background:`${pm.color}15`, color:pm.color, marginTop:5, border:`1px solid ${pm.color}25` }}>{pm.label}</div>
+                                        </div>
+                                      </div>
+                                      <span className="sans" style={{ color:MUTED, fontSize:14 }}>{isExpanded?"▲":"▼"}</span>
+                                    </div>
+
+                                    {isExpanded && (
+                                      <div style={{ marginTop:18, display:"flex", flexDirection:"column", gap:14 }}>
+                                        <div>
+                                          <div className="sans" style={{ fontSize:9, color:MUTED, fontWeight:700, marginBottom:8, letterSpacing:"0.14em", textTransform:"uppercase" }}>Opening Hook</div>
+                                          <div style={{ fontSize:15, color:"#e8d5e0", fontStyle:"italic", lineHeight:1.7, borderLeft:`2px solid ${pm.color}`, paddingLeft:14 }}>"{post.hook}"</div>
+                                        </div>
+                                        <div>
+                                          <div className="sans" style={{ fontSize:9, color:MUTED, fontWeight:700, marginBottom:8, letterSpacing:"0.14em", textTransform:"uppercase" }}>Format &amp; Structure</div>
+                                          <div className="sans" style={{ fontSize:12.5, color:"#c4b8cc", lineHeight:1.65 }}>{post.format}</div>
+                                        </div>
+                                        <div style={{ background:`${CORAL}0d`, borderRadius:3, padding:13, border:`1px solid ${CORAL}25` }}>
+                                          <div className="sans" style={{ fontSize:9, color:CORAL, fontWeight:700, marginBottom:6, letterSpacing:"0.14em", textTransform:"uppercase" }}>Paired Engagement Action</div>
+                                          <div className="sans" style={{ fontSize:12.5, color:"#d4c0c4", lineHeight:1.65 }}>{post.engagement}</div>
+                                        </div>
+                                      </div>
+                                    )}
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    // ── Mount ──────────────────────────────────────────────────
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>
